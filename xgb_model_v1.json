@@ -1,0 +1,39 @@
+{
+  "model_info": {
+    "name": "XGBoost Ship Value Prediction Model",
+    "version": "1.0.0",
+    "algorithm": "XGBRegressor"
+  },
+  "performance_metrics": {
+    "r2_score": 0.7532283181905986,
+    "mae": 1718669.6527777761,
+    "rmse": 2105405.4350153254,
+    "reliability_percent": 92.0,
+    "training_samples": 70,
+    "test_samples": 18
+  },
+  "features": {
+    "feature_names": [
+      "AGE",
+      "DWT",
+      "GRT",
+      "Puissance_Moteur",
+      "TYPE_ENCODED",
+      "is_IACS",
+      "PAYS_ENC"
+
+    ],
+    "feature_importance": {
+      "AGE": 0.20947875082492828,
+      "DWT": 0.05945897474884987,
+      "GRT": 0.02893821708858013,
+      "Puissance_Moteur": 0.019060811027884483,
+      "TYPE_ENCODED": 0.6690919995307922,
+      "is_IACS": 0.011783911846578121,
+      "PAYS_ENC": 0.0062919995307922
+    }
+  },
+  "preprocessing": {
+    "target_log_transform": true
+  }
+}
