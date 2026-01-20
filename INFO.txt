@@ -1,0 +1,139 @@
+================================================================================
+         INTERFACE STREAMLIT - STRUCTURE ORGANISEE
+================================================================================
+
+Structure créée:
+
+streamlit_interface/
+├── app.py              (Application principale - 380 lignes)
+├── run.py              (Launcher Python)
+├── run.bat             (Launcher Batch Windows)
+├── config.json         (Configuration)
+├── requirements.txt    (Dépendances)
+└── README.md           (Documentation)
+
+================================================================================
+LANCEMENT DE L'APPLICATION
+================================================================================
+
+OPTION 1 - Depuis le dossier streamlit_interface (Recommandé):
+  cd streamlit_interface
+  python run.py
+
+OPTION 2 - Double-clic Windows:
+  Cliquer sur: streamlit_interface/run.bat
+
+OPTION 3 - Depuis n'importe quel dossier:
+  streamlit run streamlit_interface/app.py
+
+OPTION 4 - Avec le launcher parent:
+  python run_app.py
+
+================================================================================
+URL D'ACCES
+================================================================================
+
+http://localhost:8501
+
+================================================================================
+STRUCTURE DE FICHIERS
+================================================================================
+
+Dossier Parent (Ship-Insured-Value-Prediction-Model-main):
+├── xgb_model_v1.pkl              (Modèle - REQUIS)
+├── xgb_model_v1.json             (Config modèle - REQUIS)
+├── data_navire.csv               (Données)
+├── training.py                   (Entraînement)
+├── inference.py                  (Inference)
+├── run_app.py                    (Launcher parent)
+├── run_streamlit.bat             (Launcher parent)
+└── streamlit_interface/          (NOUVEAU DOSSIER)
+    ├── app.py                    (Application)
+    ├── run.py                    (Launcher)
+    ├── run.bat                   (Launcher Windows)
+    ├── config.json               (Configuration)
+    ├── requirements.txt          (Dépendances)
+    └── README.md                 (Documentation)
+
+================================================================================
+AVANTAGES DE CETTE STRUCTURE
+================================================================================
+
+✓ Separation clear entre app et modèle
+✓ Facile à maintenir et mettre à jour
+✓ Structure modulaire et organisée
+✓ Configuration centralisée
+✓ Dépendances isolées pour l'app
+✓ Facile à déployer séparément
+✓ Documentation incluse
+
+================================================================================
+INSTALLATION DES DEPENDANCES
+================================================================================
+
+Option 1 - Depuis le dossier streamlit_interface:
+  pip install -r requirements.txt
+
+Option 2 - Manuellement:
+  pip install streamlit plotly pandas numpy xgboost joblib
+
+================================================================================
+MODIFICATIONS PAR RAPPORT A L'ANCIENNE VERSION
+================================================================================
+
+1. Nouveau dossier: streamlit_interface/
+2. Chemins modèle: ../xgb_model_v1.pkl et ../xgb_model_v1.json
+3. Fichiers launcher dédiés: run.py et run.bat
+4. Configuration centralisée: config.json
+5. Requirements isolés: requirements.txt
+
+================================================================================
+UTILISATION
+================================================================================
+
+1. Lancer depuis streamlit_interface/:
+   python run.py
+
+2. Accéder à http://localhost:8501
+
+3. Remplir le formulaire et cliquer "Predict Value"
+
+4. Voir les résultats et métriques
+
+================================================================================
+MISE A JOUR FACILE
+================================================================================
+
+Pour mettre à jour l'app:
+
+1. Editer streamlit_interface/app.py
+2. Les changements s'appliquent au redémarrage
+3. Les fichiers modèle restent dans le dossier parent
+4. Facile de faire des versions différentes
+
+================================================================================
+FICHIERS CREES
+================================================================================
+
+[OK] app.py              - Application Streamlit
+[OK] run.py             - Launcher Python
+[OK] run.bat            - Launcher Batch
+[OK] config.json        - Configuration
+[OK] requirements.txt   - Dépendances
+[OK] README.md          - Documentation
+
+================================================================================
+PROCHAINES ETAPES
+================================================================================
+
+1. Lancer l'app:
+   cd streamlit_interface
+   python run.py
+
+2. Accéder à: http://localhost:8501
+
+3. Tester la prédiction
+
+4. Faire des mises à jour dans ce dossier
+
+================================================================================

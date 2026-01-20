@@ -1,0 +1,21 @@
+{
+  "app": {
+    "title": "Ship Insured Value Prediction",
+    "version": "1.0.0",
+    "author": "Samir",
+    "date": "2026-01-20"
+  },
+  "model": {
+    "model_file": "../xgb_model_v1.pkl",
+    "config_file": "../xgb_model_v1.json"
+  },
+  "interface": {
+    "layout": "wide",
+    "theme": "light",
+    "sidebar_state": "expanded"
+  },
+  "streamlit": {
+    "port": 8501,
+    "host": "localhost"
+  }
+}
