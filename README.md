@@ -5,7 +5,7 @@ Estimation de la valeur des navires basée sur des modèles de Machine Learning 
 🌍 Accès Direct
 L'application est déployée et accessible ici :
 
-👉 ship-value-prediction.streamlit.app
+👉 [ship-value-prediction.streamlit.app](https://ship-value-prediction.streamlit.app/)
 
 
 ## Structure
@@ -84,4 +84,5 @@ Pour les problèmes:
 **Version:** 1.0.0  
 **Date:** 2026-01-20  
 **Auteur:** Samir
+
 
