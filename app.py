@@ -141,7 +141,7 @@ def main():
     st.sidebar.markdown("### 🔹 Historique des simulations")
     st.sidebar.markdown("---")
     st.sidebar.markdown("Développé par **Samir Hallina**")
-    st.sidebar.markdown("[GitHub Repository](https://github.com/HALILASAMIR/Ship-Insured-Value-Prediction-Model)")
+    st.sidebar.markdown("[GitHub Repository](https://github.com/HALILASAMIR)")
 
 
     if not predictor.model:
@@ -241,4 +241,5 @@ def main():
         st.metric("Valeur Max", f"${max_val:,.0f}")
 if __name__ == "__main__":
     main()
+
 
