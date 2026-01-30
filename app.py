@@ -6,56 +6,88 @@ import json
 from pathlib import Path
 import plotly.express as px
 from datetime import datetime
-
+# --- FONCTION CSS PERSONNALISÉE ---
 def inject_custom_css():
     st.markdown("""
         <style>
-            /* Fond général */
-            .main {
-                background-color: #78c4e6;#coleur de fond principal
-                color: #78c4e6;
-                font-family: 'Segoe UI', sans-serif;
+            /* 1. PALETTE DE COULEURS UNIFIÉE */
+            :root {
+                --bleu-fond: #78c4e6;
+                --bleu-marine: #12517a;
+                --bleu-fonce: #0d3b66;
+                --bleu-bouton: #4d99bf;
+                --blanc-pur: #ffffff;
             }
 
-            /* Titres */
-            h1, h2, h3, h4 {
-                color: #00b4d8;
+            /* Fond de l'application */
+            [data-testid="stAppViewContainer"] {
+                background: linear-gradient(160deg, var(--bleu-fond) 0%, #a2d9f2 100%) !important;
+            }
+            
+            /* Sidebar : Marine profond */
+            [data-testid="stSidebar"] {
+                background-color: var(--bleu-marine) !important;
             }
 
-            /* Encadrés */
-            .stForm, .stTable {
-                background-color: #1c1f26;
-                border-radius: 10px;
-                padding: 20px;
-                box-shadow: 0 0 10px rgba(0,180,216,0.2);
+            /* 2. TYPOGRAPHIE ET COULEURS DE TEXTE */
+            h1, h2, h3, p, span, label {
+                color: var(--bleu-fonce) !important;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            
+            /* Texte blanc UNIQUEMENT dans la sidebar */
+            [data-testid="stSidebar"] .stMarkdown p, 
+            [data-testid="stSidebar"] h3, 
+            [data-testid="stSidebar"] label {
+                color: var(--blanc-pur) !important;
             }
 
-            /* Bouton */
+            /* 3. CARTES ET FORMULAIRES (Le secret du design pro) */
+            div[data-testid="stForm"], .stMetric, .stTable {
+                background-color: rgba(255, 255, 255, 0.85) !important;
+                border-radius: 12px !important;
+                padding: 25px !important;
+                box-shadow: 0 8px 20px rgba(13, 59, 102, 0.1) !important;
+                border: 1px solid rgba(255, 255, 255, 0.5) !important;
+            }
+
+            /* 4. BOUTON (Harmonisé avec la sidebar) */
             button[kind="primary"] {
-                background-color:#4d99bf;
-                color: #ffffff;
-                border-radius: 8px;
-                padding: 0.5em 1em;
-                font-weight: bold;
+                background-color: var(--bleu-marine) !important;
+                color: white !important;
+                border-radius: 8px !important;
+                border: none !important;
+                transition: all 0.3s ease;
+                height: 3em;
             }
 
-            /* Sidebar */
-            .css-1d391kg {
-                background-color: #12517a;
+            button[kind="primary"]:hover {
+                background-color: var(--bleu-fonce) !important;
+                transform: translateY(-1px);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             }
 
-            /* Tableau historique */
-            .stTable tbody tr {
-                background-color: #1c1f26;
-                border-bottom: 1px solid #2c2f36;
+            /* 5. CHAMPS DE SAISIE (Inputs) */
+            input, select, div[data-baseweb="select"] {
+                background-color: white !important;
+                border: 1px solid var(--bleu-fond) !important;
+                border-radius: 6px !important;
+                color: var(--bleu-fonce) !important;
             }
 
-            /* Input fields */
-            input, select {
-                background-color: #2c2f36;
+            /* Résultat de la prédiction (Le bandeau final) */
+            .prediction-box {
+                background-color: var(--bleu-marine) !important;
                 color: white;
-                border: 1px solid #00b4d8;
-                border-radius: 5px;
+                padding: 20px;
+                border-radius: 10px;
+                text-align: center;
+                border-left: 5px solid var(--bleu-fond);
+            }
+                button[kind="primary"] {
+                background: linear-gradient(135deg, #d4af37 0%, #f1d592 100%) !important;
+                color: #0d3b66 !important;
+                border: none !important;
             }
         </style>
     """, unsafe_allow_html=True)
@@ -102,7 +134,7 @@ def main():
     # --- SIDEBAR ---
     st.sidebar.image("logo.png", width=200)
     #centrer le texte
-    st.sidebar.markdown("<div style='text-align: center;'> IA appliquée à la valorisation des navires</div>", unsafe_allow_html=True)
+    st.sidebar.markdown("<h3 style='text-align: center;'> IA appliquée à la valorisation des navires</h3>", unsafe_allow_html=True)
     
     st.sidebar.markdown("### 🔹 Saisie des données")
     st.sidebar.markdown("### 🔹 Résultat de la Prédiction")
@@ -135,7 +167,7 @@ def main():
             c_map = {"Chine": 0, "Japon": 1, "Corée": 2, "Europe": 7, "Autre": 9}
             country = st.selectbox("Pays", list(c_map.keys()))
             
-            submit = st.form_submit_button("Calculer la Valeur Réelle", type="primary")
+            submit = st.form_submit_button("Calculer la Valeur ", type="primary")
 
     with col2:
         if submit:
@@ -156,19 +188,46 @@ def main():
                 'Prix Estimé': f"${valeur:,.0f}"
             })
             st.markdown("## 📈 Résultat de la Prédiction")
-            st.markdown(f""" <div style="background-color:#1c1f26; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,180,216,0.3);"> <h3 style="color:#00b4d8;">Valeur Estimée</h3> <p style="font-size:24px; font-weight:bold; color:#f0f2f6;">${valeur:,.0f}</p> </div> """, unsafe_allow_html=True)
-
-            st.success(f"### Valeur Estimée : ${valeur:,.0f}")
-            
-            # --- COMPARAISON AVEC LES POIDS RÉELS DU JSON ---
-            if predictor.config:
-                st.info("📊 **Analyse de l'importance (Source JSON):**")
-                imp_df = pd.DataFrame({
-                    'Feature': predictor.config['XGBoost']['features'],
-                    'Poids Réel': predictor.config['XGBoost']['feature_importance']
-                }).sort_values('Poids Réel', ascending=False)
-                st.table(imp_df)
-
+            st.markdown(f"""
+                <div style="
+                    background: #5da2cf;
+                    padding: 30px;
+                    border-radius: 15px;
+                    text-align: center;
+                    border: 2px solid #d4af37;
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+                    margin: 20px 0;
+                ">
+                    <h3 style="
+                        color: white !important; 
+                        font-family: 'Georgia', serif; 
+                        text-transform: uppercase; 
+                        letter-spacing: 2px;
+                        margin-bottom: 10px;
+                        font-size: 18px;
+                    ">
+                        ✨ Valeur Estimée du Navire
+                    </h3>
+                    <p style="
+                        font-size: 45px; 
+                        font-weight: 900; 
+                        color: white; 
+                        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+                        margin: 0;
+                        font-family: 'Verdana', sans-serif;
+                    ">
+                        ${valeur:,.0f}
+                    </p>
+                    <div style="
+                        width: 50px; 
+                        height: 3px; 
+                        background: #d4af37; 
+                        margin: 15px auto 0;
+                        border-radius: 2px;
+                    "></div>
+                </div>
+            """, unsafe_allow_html=True)
+    
     # --- AFFICHAGE HISTORIQUE ---
 
     if st.session_state['history']: 
