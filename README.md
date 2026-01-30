@@ -1,5 +1,13 @@
 # Streamlit Interface - Ship Value Prediction
 
+Estimation de la valeur des navires basée sur des modèles de Machine Learning (XGBoost) avancés.
+
+🌍 Accès Direct
+L'application est déployée et accessible ici :
+
+👉 ship-value-prediction.streamlit.app
+
+
 ## Structure
 
 ```
@@ -76,3 +84,4 @@ Pour les problèmes:
 **Version:** 1.0.0  
 **Date:** 2026-01-20  
 **Auteur:** Samir
+
