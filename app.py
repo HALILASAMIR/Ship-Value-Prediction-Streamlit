@@ -140,7 +140,7 @@ def main():
     st.sidebar.markdown("### 🔹 Résultat de la Prédiction")
     st.sidebar.markdown("### 🔹 Historique des simulations")
     st.sidebar.markdown("---")
-    st.sidebar.markdown("Développé par **Samir Hallina**")
+    st.sidebar.markdown("Développé par **Samir Halila**")
     st.sidebar.markdown("[GitHub Repository](https://github.com/HALILASAMIR)")
 
 
@@ -241,5 +241,6 @@ def main():
         st.metric("Valeur Max", f"${max_val:,.0f}")
 if __name__ == "__main__":
     main()
+
 
 
